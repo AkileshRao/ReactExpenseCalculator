@@ -1,6 +1,12 @@
 import React from 'react';
 
-const Button = (props) => {
+interface IButtonParams {
+    type: string;
+    action: any;
+
+}
+
+const Button: React.FunctionComponent<IButtonParams> = (props) => {
     return (
         <button
             className={props.type === "submit" ? "btn btn-submit" : "btn btn-cancel"}
