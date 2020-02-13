@@ -1,8 +1,9 @@
 import React from 'react';
+import AddExpenseForm from '../Expense/addExpense/AddExpenseForm';
 
 const  Main = () => {
     return(
-        <h1>Main Component</h1>
+        <AddExpenseForm></AddExpenseForm>
     )
 }
 

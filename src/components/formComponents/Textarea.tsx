@@ -3,11 +3,11 @@ import React from "react";
 interface ITextareaProps {
   title: string;
   name: string;
-  rows: number;
-  cols: number;
-  value: string;
-  handleChange: any;
-  placeholder: string;
+  rows?: number;
+  cols?: number;
+  value?: string;
+  handleChange?: any;
+  placeholder?: string;
 }
 
 const TextArea: React.FunctionComponent<ITextareaProps> = props => (

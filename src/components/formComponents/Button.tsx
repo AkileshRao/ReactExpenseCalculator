@@ -1,9 +1,8 @@
 import React from 'react';
 
 interface IButtonParams {
-    type: string;
+    type?: string;
     action: any;
-
 }
 
 const Button: React.FunctionComponent<IButtonParams> = (props) => {
