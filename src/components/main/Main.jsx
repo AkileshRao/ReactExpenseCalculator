@@ -1,9 +1,13 @@
 import React from 'react';
 import AddExpenseForm from '../Expense/addExpense/AddExpenseForm';
+import ExpenseList from '../Expense/expenseList/ExpenseList';
 
 const  Main = () => {
     return(
-        <AddExpenseForm></AddExpenseForm>
+        <div>
+            <ExpenseList />
+            <AddExpenseForm />
+        </div>
     )
 }
 

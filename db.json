@@ -1,0 +1,28 @@
+{
+    "expenses": [
+        {
+            "id": 1,
+            "expenseTitle": "Test",
+            "expenseDescription": "Test",
+            "expenseAmount": 1
+        },
+        {
+            "id": 2,
+            "expenseTitle": "sdaa",
+            "expenseDescription": "dasd",
+            "expenseAmount": ""
+        },
+        {
+            "id": 3,
+            "expenseTitle": "sdaa",
+            "expenseDescription": "dasd",
+            "expenseAmount": ""
+        },
+        {
+            "id": 4,
+            "expenseTitle": "",
+            "expenseDescription": "",
+            "expenseAmount": ""
+        }
+    ]
+}
