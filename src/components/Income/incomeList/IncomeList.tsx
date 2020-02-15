@@ -1,9 +1,14 @@
 import React from 'react'
+import IncomeItem, { IIncomeItem } from './incomeItem/IncomeItem'
 
-const IncomeList = () => {
+const IncomeList = (incomes: IIncomeItem[]) => {
     return (
-        <div>
-            
-        </div>
+        <ul>
+            {incomes.map((income, index) => {
+                <IncomeItem key={index} {...income} />
+            })}
+        </ul>
     )
 }
+
+export default IncomeList;

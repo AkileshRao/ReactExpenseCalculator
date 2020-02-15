@@ -16,6 +16,16 @@ export const addExpense = (expense: IExpense) => ({
 });
 
 export const addIncome = (income: IIncome) => ({
-    type : 'ADD_INCOME',
+    type: 'ADD_INCOME',
     ...income
 })
+
+export const setListType = (listType: any) => ({
+    type: 'SET_LIST_TYPE',
+    listType
+})
+
+export const ListTypes = {
+    INCOME_LIST: "INCOME_LIST",
+    EXPENSE_LIST: "EXPENSE_LIST"
+}

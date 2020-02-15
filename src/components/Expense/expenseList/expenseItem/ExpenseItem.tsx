@@ -1,9 +1,17 @@
 import React from 'react'
 
-const ExpenseItem = () => {
+export interface IExpenseItem {
+    title: string,
+    description: string,
+    amount: number
+}
+
+const ExpenseItem = (item: IExpenseItem) => {
     return (
         <div>
-            Item
+            <h1>{item.title}</h1>
+            <p>{item.description}</p>
+            <p>{item.amount}</p>
         </div>
     )
 }
