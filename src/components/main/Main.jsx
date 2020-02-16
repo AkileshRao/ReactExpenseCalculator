@@ -1,12 +1,12 @@
 import React from 'react';
-import AddExpenseForm from '../Expense/addExpense/AddExpenseForm';
-import ExpenseList from '../Expense/expenseList/ExpenseList';
+import AddTransactionForm from '../containers/AddTransactionForm';
+import TransactionListContainer from '../containers/TransactionListContainer';
 
 const  Main = () => {
     return(
         <div>
-            <ExpenseList />
-            <AddExpenseForm />
+            <AddTransactionForm />
+            <TransactionListContainer />
         </div>
     )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 
 interface IInputProps {
     name: string;
-    title: string;
+    title?: string;
     inputType: string;
     value?: string;
     handleChange?: any;

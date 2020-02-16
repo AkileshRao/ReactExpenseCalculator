@@ -1,28 +1,32 @@
 {
-    "expenses": [
+    "transactions": [
         {
             "id": 1,
-            "expenseTitle": "Test",
-            "expenseDescription": "Test",
-            "expenseAmount": 1
+            "transactionTitle": "Test",
+            "transactionDescription": "Test",
+            "transactionAmount": 1,
+            "transactionType": "INCOME"
         },
         {
             "id": 2,
-            "expenseTitle": "sdaa",
-            "expenseDescription": "dasd",
-            "expenseAmount": ""
+            "transactionTitle": "sdaa",
+            "transactionDescription": "dasd",
+            "transactionAmount": 10,
+            "transactionType": "EXPENSE"
         },
         {
             "id": 3,
-            "expenseTitle": "sdaa",
-            "expenseDescription": "dasd",
-            "expenseAmount": ""
+            "transactionTitle": "sdaa",
+            "transactionDescription": "dasd",
+            "transactionAmount": 20,
+            "transactionType": "EXPENSE"
         },
         {
             "id": 4,
-            "expenseTitle": "",
-            "expenseDescription": "",
-            "expenseAmount": ""
+            "transactionTitle": "",
+            "transactionDescription": "",
+            "transactionAmount": 30,
+            "transactionType": "INCOME"
         }
     ]
 }

@@ -1,12 +1,11 @@
 import { combineReducers } from "redux";
-import expenses from './expenses';
-import incomes from './incomes';
-import { ListTypes } from '../actions/index';
+import transactions from './transactions';
+import { FilterTypes } from '../actions/index';
 
-const listTypeReducer = (state = ListTypes.EXPENSE_LIST, action: any) => {
+const setFilter = (state = FilterTypes.ALL, action: any) => {
     switch (action.type) {
-        case "SET_LIST_TYPE":
-            return action.type;
+        case "FILTER":
+            return action.filter;
 
         default:
             return state;
@@ -15,7 +14,6 @@ const listTypeReducer = (state = ListTypes.EXPENSE_LIST, action: any) => {
 }
 
 export default combineReducers({
-    expenses,
-    incomes,
-    listTypeReducer
+    transactions,
+    setFilter
 })

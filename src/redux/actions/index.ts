@@ -1,31 +1,22 @@
-export interface IExpense {
-    expenseTitle: string;
-    expenseDescription: string;
-    expenseAmount: number;
+export interface ITransaction {
+    transactionTitle: string;
+    transactionDescription: string;
+    transactionAmount: number;
+    transactionType: string
 }
 
-export interface IIncome {
-    incomeTitle: string;
-    incomeDescription: string;
-    incomeAmount: number;
-}
-
-export const addExpense = (expense: IExpense) => ({
-    type: 'ADD_EXPENSE',
-    ...expense
+export const addTransaction = (transaction: ITransaction) => ({
+    type: 'ADD_TRANSACTION',
+    ...transaction
 });
 
-export const addIncome = (income: IIncome) => ({
-    type: 'ADD_INCOME',
-    ...income
+export const setFilter = (filter: any) => ({
+    type: 'FILTER',
+    filter
 })
 
-export const setListType = (listType: any) => ({
-    type: 'SET_LIST_TYPE',
-    listType
-})
-
-export const ListTypes = {
-    INCOME_LIST: "INCOME_LIST",
-    EXPENSE_LIST: "EXPENSE_LIST"
+export const FilterTypes = {
+    ALL: "ALL",
+    INCOME: "INCOME",
+    EXPENSE: "EXPENSE"
 }
