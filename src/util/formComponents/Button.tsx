@@ -3,6 +3,7 @@ import React from 'react';
 interface IButtonParams {
     type?: string;
     action: any;
+    value: string;
 }
 
 const Button: React.FunctionComponent<IButtonParams> = (props) => {
@@ -10,7 +11,7 @@ const Button: React.FunctionComponent<IButtonParams> = (props) => {
         <button
             className={props.type === "submit" ? "btn btn-submit" : "btn btn-cancel"}
             onClick={props.action}>
-            {props.type === "submit" ? "Submit" : "Cancel"}
+            {props.value}
         </button>
     );
 };

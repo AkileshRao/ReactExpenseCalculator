@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 import React, { useState, useEffect } from 'react'
-import { Input, Button, Textarea } from '../../util/formComponents';
-import { addTransaction } from '../../redux/actions/index';
+import { Input, Button, Textarea } from '../util/formComponents';
+import { addTransaction } from '../redux/actions/index';
 import axios from 'axios';
 
 const url = "http://localhost:3001";
 
 const AddTransactionForm = ({ dispatch }: any) => {
     let initialState = {
-        id: 0,
+        transactionId: 0,
         transactionTitle: '',
         transactionDescription: '',
         transactionAmount: 0,
@@ -39,9 +39,9 @@ const AddTransactionForm = ({ dispatch }: any) => {
         }));
     }
 
-    useEffect(() => {
-        console.log(transaction);
-    })
+    // useEffect(() => {
+    //     console.log(transaction);
+    // })
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -74,7 +74,7 @@ const AddTransactionForm = ({ dispatch }: any) => {
                     inputType={'radio'}
                     handleChange={handleInput}
                 />EXPENSE
-                <Button action={handleSubmit}>Submit transaction</Button>
+                <Button action={handleSubmit} value='Submit transaction' />
             </form>
         </div >
     )

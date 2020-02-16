@@ -10,7 +10,6 @@ const setFilter = (state = FilterTypes.ALL, action: any) => {
         default:
             return state;
     }
-
 }
 
 export default combineReducers({

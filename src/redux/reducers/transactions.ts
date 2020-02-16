@@ -4,6 +4,7 @@ const transactions = (state = [], action: any) => {
             return [
                 ...state,
                 {
+                    transactionId : state.length,
                     transactionTitle: action.transactionTitle,
                     transactionDescription: action.transactionDescription,
                     transactionAmount: action.transactionAmount,

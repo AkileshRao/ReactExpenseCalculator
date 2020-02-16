@@ -1,4 +1,5 @@
 export interface ITransaction {
+    transactionId: number;
     transactionTitle: string;
     transactionDescription: string;
     transactionAmount: number;
