@@ -3,13 +3,7 @@ import { connect } from 'react-redux';
 import { setFilter } from '../redux/actions/index';
 
 const Link = ({ active, children, onClick }: any) => (
-    <button
-        onClick={onClick}
-        disabled={active}
-        style={{
-            marginLeft: '4px',
-        }}
-    >
+    <button onClick={onClick} disabled={active}>
         {children}
     </button>
 )

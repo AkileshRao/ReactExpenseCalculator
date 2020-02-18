@@ -8,7 +8,7 @@ const Main = () => {
         <div>
             <AddTransactionForm />
             <TransactionListContainer />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }
