@@ -1,5 +1,7 @@
-import { HttpService } from "../../services/httpService";
 import axios from 'axios';
+export const FETCH_TRANSACTIONS = "FETCH_TRANSACTIONS";
+const apiUrl = "http://localhost:3001/transactions";
+
 export interface ITransaction {
     transactionId: number;
     transactionTitle: string;
@@ -13,25 +15,10 @@ export const addTransaction = (transaction: ITransaction) => ({
     ...transaction
 });
 
-export const fetchTransactionsBegin = () => ({
-    type: "FETCH_TRANSACTIONS_BEGIN"
-});
-
-export const fetchTransactionsSuccess = (transactions: any) => ({
-    type: "FETCH_TRANSACTION_SUCCESS",
-    payload: { transactions }
-})
-
-export const fetchTransactionsError = (error: any) => ({
-    type: "FETCH_TRANSACTION_SUCCESS",
-    payload: { error }
-})
-
 export const setFilter = (filter: any) => ({
     type: 'FILTER',
     filter
 });
-
 
 export const FilterTypes = {
     ALL: "ALL",
@@ -39,25 +26,12 @@ export const FilterTypes = {
     EXPENSE: "EXPENSE"
 }
 
-export const fetchTransactions = () => {
-    console.log("happened")
-    return (dispatch: any) => {
-        console.log("dispatch")
-        dispatch(fetchTransactionsBegin());
-        console.log("fetch begun")
-        // const http: HttpService = new HttpService();
-        return axios.get("http://localhost:3001/transactions").then(res => {
-            console.log("happened too");
-            console.log(res);
-            dispatch(fetchTransactionsSuccess(res.data));
-            return res.data;
-        }).catch(error => dispatch(fetchTransactionsError(error)))
-    }
-}
 
-function handleErrors(response: any) {
-    if (!response.ok) {
-        throw Error(response.statusText);
+export const fetchTransactions = () => {
+    return (dispatch: any) => {
+        return axios.get(apiUrl).then(res => {
+            console.log(res);
+            dispatch({ type: FETCH_TRANSACTIONS, transactions: res.data });
+        }).catch(error => { throw (error); })
     }
-    return response;
 }

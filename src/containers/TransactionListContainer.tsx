@@ -3,29 +3,69 @@ import { connect } from 'react-redux';
 import TransactionItem from '../components/TransactionItem';
 import { FilterTypes, ITransaction, fetchTransactions } from '../redux/actions/index';
 
-const TransactionList = ({ transactions, loading, error }: any) => {
+class TransactionList extends Component<{ transactions: any }> {
 
-    console.log(transactions);
-    return (
-        <div>
-            <ul>
-                {transactions.transactions.map((transaction: ITransaction, id: number) => (
-                    <TransactionItem key={id} {...transaction} />
-                ))}
-            </ul>
-        </div >
-    )
+    render() {
+        if (this.props.transactions.length) {
+            return (
+                <div>
+                    <ul>
+                        {this.props.transactions.map((transaction: ITransaction, id: number) => (
+                            <TransactionItem key={id} {...transaction} />
+                        ))}
+                    </ul>
+                </div >
+            )
+        }
+        else {
+            return (<div>No transactions</div>)
+        }
+    }
+
 }
+
+
 
 const mapStateToProps = (state: any) => ({
     transactions: state.transactions,
-    loading: state.transactions.loading,
-    error: state.transactions.error
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
-    useEffect : dispatch(fetchTransactions())
-})
+
+
+
+
+export default connect(mapStateToProps)(TransactionList);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // const getList = (transactions: ITransaction[], filter: any) => {
 //     // console.log(transactions);
@@ -47,5 +87,3 @@ const mapDispatchToProps = (dispatch: any) => ({
 //         transactions: getList(state.transactions, state.setFilter)
 //     }
 // }
-
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
