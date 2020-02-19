@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import React, { useState, useEffect } from 'react'
-import { Input, Button, Textarea } from '../util/formComponents';
+import { Input, Button, Textarea, CheckBox } from '../util/formComponents';
 import { addTransaction } from '../redux/actions/index';
-import axios from 'axios';
+import './AddTransactionForm.scss';
+import { IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
 
 const url = "http://localhost:3001";
 
@@ -42,38 +43,45 @@ const AddTransactionForm = ({ dispatch }: any) => {
     // useEffect(() => {
     //     console.log(transaction);
     // })
+
+    const options: IChoiceGroupOption[] = [
+        { key: 'expense', text: 'Expense', iconProps: { iconName: 'Sad' } },
+        { key: 'income', text: 'Income', iconProps: { iconName: 'Emoji2' } },
+    ];
+
     return (
-        <div>
+        <div className='transaction-form'>
             <form onSubmit={handleSubmit}>
-                <Input
-                    name={'transactionTitle'}
-                    title={'Add transaction'}
-                    inputType={'text'}
-                    handleChange={handleInput}
-                >
-                </Input>
+                <div className='row-1'>
+                    <Input
+                        label={"Title"}
+                        name={'transactionTitle'}
+                        title={'Add transaction'}
+                        inputType={'text'}
+                        handleChange={handleInput}
+                    />
+
+                    <Input
+                        label={'Amount'}
+                        name={'transactionAmount'}
+                        title={'Add amount'}
+                        inputType={'number'}
+                        handleChange={handleInput}
+                    />
+                </div>
                 <Textarea
+                    label={'Description'}
                     name={'transactionDescription'}
                     title={'transaction Description'}
-                    handleChange={handleInput}></Textarea>
-                <Input
-                    name={'transactionAmount'}
-                    title={'Add amount'}
-                    inputType={'number'}
-                    handleChange={handleInput}
+                    handleChange={handleInput} />
+
+                <CheckBox
+                    name={'Transaction Type'}
+                    title={'Transaction Type'}
+                    options={options}
+                    label={'Type of transaction'}
                 />
-                <Input
-                    name={'transactionType'}
-                    inputType={'radio'}
-                    value={"INCOME"}
-                    handleChange={handleInput}
-                />INCOME
-                <Input
-                    name={'transactionType'}
-                    value={'EXPENSE'}
-                    inputType={'radio'}
-                    handleChange={handleInput}
-                />EXPENSE
+                
                 <Button action={handleSubmit} value='Submit transaction' />
             </form>
         </div >

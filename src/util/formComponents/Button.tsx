@@ -1,4 +1,5 @@
 import React from 'react';
+import { DefaultButton, PrimaryButton, Stack, IStackTokens } from 'office-ui-fabric-react';
 
 interface IButtonParams {
     type?: string;
@@ -8,11 +9,7 @@ interface IButtonParams {
 
 const Button: React.FunctionComponent<IButtonParams> = (props) => {
     return (
-        <button
-            className={props.type === "submit" ? "btn btn-submit" : "btn btn-cancel"}
-            onClick={props.action}>
-            {props.value}
-        </button>
+        <PrimaryButton text={props.value} onClick={props.action} />
     );
 };
 

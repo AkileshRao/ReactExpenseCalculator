@@ -1,4 +1,5 @@
 import React from "react";
+import { TextField } from "office-ui-fabric-react/lib/TextField";
 
 interface ITextareaProps {
   title: string;
@@ -8,12 +9,14 @@ interface ITextareaProps {
   value?: string;
   handleChange?: any;
   placeholder?: string;
+  label?: string;
 }
 
 const TextArea: React.FunctionComponent<ITextareaProps> = props => (
   <div className="form-group">
-    <label className="form-label">{props.title}</label>
-    <textarea
+    <TextField
+      multiline
+      label={props.label}
       className="form-control"
       name={props.name}
       rows={props.rows}
