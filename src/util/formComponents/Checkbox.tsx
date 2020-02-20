@@ -14,12 +14,10 @@ interface ICheckboxProps {
 
 const CheckBox: React.FunctionComponent<ICheckboxProps> = props => {
   return (
-    <div className="form-group">
-      <ChoiceGroup
-        label={props.label}
-        defaultSelectedKey="day"
-        options={props.options} />;
-    </div>
+    <ChoiceGroup
+      label={props.label}
+      defaultSelectedKey="day"
+      options={props.options} />
   )
 }
 

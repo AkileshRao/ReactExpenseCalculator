@@ -9,14 +9,14 @@ interface IInputProps {
     handleChange?: any;
     placeholder?: any;
     label?: string;
+    className?: string;
 }
 
 const Input: React.FunctionComponent<IInputProps> = (props) => {
     return (
-        <div className="form-group">
             <TextField
                 label={props.label}
-                className="form-control"
+                className={props.className}
                 id={props.name}
                 name={props.name}
                 type={props.inputType}
@@ -25,7 +25,6 @@ const Input: React.FunctionComponent<IInputProps> = (props) => {
                 placeholder={props.placeholder}
                 {...props}
             />
-        </div>
     )
 }
 

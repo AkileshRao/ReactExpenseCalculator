@@ -52,37 +52,45 @@ const AddTransactionForm = ({ dispatch }: any) => {
     return (
         <div className='transaction-form'>
             <form onSubmit={handleSubmit}>
-                <div className='row-1'>
+
+                <div className="row-1">
+                    <CheckBox
+                        name={'Transaction Type'}
+                        title={'Transaction Type'}
+                        options={options}
+
+                    />
+                </div>
+                <div className='row-2'>
                     <Input
-                        label={"Title"}
+                        placeholder={"Title"}
                         name={'transactionTitle'}
                         title={'Add transaction'}
                         inputType={'text'}
                         handleChange={handleInput}
+                        className={'trans-title'}
                     />
 
                     <Input
-                        label={'Amount'}
+                        placeholder={'Amount'}
                         name={'transactionAmount'}
                         title={'Add amount'}
                         inputType={'number'}
                         handleChange={handleInput}
+                        className={'trans-amount'}
                     />
                 </div>
-                <Textarea
-                    label={'Description'}
-                    name={'transactionDescription'}
-                    title={'transaction Description'}
-                    handleChange={handleInput} />
+                <div className="row-3">
+                    <Textarea
+                        placeholder={'Description'}
+                        name={'transactionDescription'}
+                        title={'transaction Description'}
+                        handleChange={handleInput} />
 
-                <CheckBox
-                    name={'Transaction Type'}
-                    title={'Transaction Type'}
-                    options={options}
-                    label={'Type of transaction'}
-                />
-                
-                <Button action={handleSubmit} value='Submit transaction' />
+                </div>
+                <div className="row-4">
+                    <Button action={handleSubmit} value='Submit transaction' />
+                </div>
             </form>
         </div >
     )
