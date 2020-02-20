@@ -10,21 +10,22 @@ interface IInputProps {
     placeholder?: any;
     label?: string;
     className?: string;
+    style?: any;
 }
 
 const Input: React.FunctionComponent<IInputProps> = (props) => {
     return (
-            <TextField
-                label={props.label}
-                className={props.className}
-                id={props.name}
-                name={props.name}
-                type={props.inputType}
-                value={props.value}
-                onChange={props.handleChange}
-                placeholder={props.placeholder}
-                {...props}
-            />
+        <TextField
+            label={props.label}
+            className={props.className}
+            id={props.name}
+            name={props.name}
+            type={props.inputType}
+            value={props.value}
+            onChange={props.handleChange}
+            placeholder={props.placeholder}
+            {...props}
+        />
     )
 }
 

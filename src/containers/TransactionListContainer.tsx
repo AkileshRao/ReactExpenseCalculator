@@ -2,13 +2,13 @@ import React, { useEffect, Component } from 'react';
 import { connect } from 'react-redux';
 import TransactionItem from '../components/TransactionItem';
 import { FilterTypes, ITransaction, fetchTransactions } from '../redux/actions/index';
-
+import './TransactionListContainer.scss';
 class TransactionList extends Component<{ transactions: any }> {
 
     render() {
         if (this.props.transactions.length) {
             return (
-                <div>
+                <div className='trans-list'>
                     <ul>
                         {this.props.transactions.map((transaction: ITransaction, id: number) => (
                             <TransactionItem key={id} {...transaction} />
