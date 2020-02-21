@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React, { useState, useEffect } from 'react'
 import { Input, Button, Textarea, CheckBox } from '../util/formComponents';
-import { addTransaction } from '../redux/actions/index';
+import { addTransaction, fetchTransactions } from '../redux/actions/index';
 import './AddTransactionForm.scss';
 import { IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
 
@@ -9,11 +9,10 @@ const url = "http://localhost:3001";
 
 const AddTransactionForm = ({ dispatch }: any) => {
     let initialState = {
-        transactionId: 0,
         transactionTitle: '',
         transactionDescription: '',
         transactionAmount: 0,
-        transactionType: "EXPENSE"
+        transactionType: ''
     };
 
     const [transaction, setTransaction] = useState(initialState);
@@ -21,15 +20,7 @@ const AddTransactionForm = ({ dispatch }: any) => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         dispatch(addTransaction(transaction));
-        // axios.post(`${url}/transactions`, {
-        //     method: 'POST',
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify(transaction)
-        // }).then(res => {
-        //     console.log(res);
-        // })
+        dispatch(fetchTransactions());
     }
 
     const handleInput = (e: any) => {
@@ -40,6 +31,12 @@ const AddTransactionForm = ({ dispatch }: any) => {
         }));
     }
 
+    const handleCheckbox = (e: any, option: any) => {
+        setTransaction(prevTransaction => ({
+            ...prevTransaction,
+            transactionType: option.key
+        }))
+    }
     // useEffect(() => {
     //     console.log(transaction);
     // })
@@ -55,10 +52,10 @@ const AddTransactionForm = ({ dispatch }: any) => {
 
                 <div className="row-1">
                     <CheckBox
-                        name={'Transaction Type'}
+                        name={'transactionType'}
                         title={'Transaction Type'}
                         options={options}
-
+                        handleChange={handleCheckbox}
                     />
                 </div>
                 <div className='row-2'>

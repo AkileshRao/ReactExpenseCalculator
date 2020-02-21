@@ -5,9 +5,10 @@ interface ICheckboxProps {
   name: string;
   title: string;
   options: any[];
-  onChange?: any;
+  handleChange?: any;
   selectedOptions?: any;
   label?: string;
+  value?: any;
 }
 
 
@@ -17,7 +18,9 @@ const CheckBox: React.FunctionComponent<ICheckboxProps> = props => {
     <ChoiceGroup
       label={props.label}
       defaultSelectedKey="day"
-      options={props.options} />
+      options={props.options}
+      onChange={props.handleChange}
+      value={props.value} />
   )
 }
 

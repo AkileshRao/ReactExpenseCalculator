@@ -11,7 +11,7 @@ const TransactionItem = (item: ITransaction) => {
                 secondaryText={item.transactionDescription}
                 size={PersonaSize.size48}
                 imageInitials={item.transactionAmount+""}
-                initialsColor={item.transactionType === "INCOME" ? PersonaInitialsColor.lightGreen : PersonaInitialsColor.lightRed}
+                initialsColor={item.transactionType === "income" ? PersonaInitialsColor.lightGreen : PersonaInitialsColor.lightRed}
             />
         </div>
     )

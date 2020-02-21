@@ -15,8 +15,6 @@ initializeIcons();
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-store.dispatch(fetchTransactions()); 
-
 ReactDOM.render(
     <Provider store={store}>
         <App />

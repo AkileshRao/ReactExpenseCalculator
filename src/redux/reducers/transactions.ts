@@ -1,18 +1,11 @@
+import { ADD_TRANSACTION, FETCH_TRANSACTIONS } from "../actions";
 
 const addTransaction = (state = [], action: any) => {
     switch (action.type) {
-        case 'ADD_TRANSACTION':
+        case ADD_TRANSACTION:
             return [
-                ...state,
-                {
-                    transactionId: state.length,
-                    transactionTitle: action.transactionTitle,
-                    transactionDescription: action.transactionDescription,
-                    transactionAmount: action.transactionAmount,
-                    transactionType: action.transactionType
-                }
+                action.transaction
             ]
-
         default:
             return state
     }
@@ -25,7 +18,7 @@ const initialState = {
 
 const transactions = (state = initialState, action: any) => {
     switch (action.type) {
-        case "FETCH_TRANSACTIONS":
+        case FETCH_TRANSACTIONS:
             return action.transactions
         default:
             return state

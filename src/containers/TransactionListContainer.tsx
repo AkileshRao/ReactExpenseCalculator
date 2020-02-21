@@ -1,9 +1,15 @@
 import React, { useEffect, Component } from 'react';
 import { connect } from 'react-redux';
 import TransactionItem from '../components/TransactionItem';
-import { FilterTypes, ITransaction, fetchTransactions } from '../redux/actions/index';
+import { ITransaction, fetchTransactions } from '../redux/actions/index';
 import './TransactionListContainer.scss';
-class TransactionList extends Component<{ transactions: any }> {
+
+
+class TransactionList extends Component<{ transactions: any, fetchTransactions: any }> {
+
+    componentDidMount() {
+        this.props.fetchTransactions();
+    }
 
     render() {
         if (this.props.transactions.length) {
@@ -21,20 +27,15 @@ class TransactionList extends Component<{ transactions: any }> {
             return (<div>No transactions</div>)
         }
     }
-
 }
-
-
 
 const mapStateToProps = (state: any) => ({
     transactions: state.transactions,
 });
 
+const mapDispatchToProps = { fetchTransactions };
 
-
-
-
-export default connect(mapStateToProps)(TransactionList);
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
 
 
 

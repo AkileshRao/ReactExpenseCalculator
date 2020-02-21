@@ -1,32 +1,18 @@
 {
-    "transactions": [
-        {
-            "id": 1,
-            "transactionTitle": "Test",
-            "transactionDescription": "Test",
-            "transactionAmount": 1,
-            "transactionType": "INCOME"
-        },
-        {
-            "id": 2,
-            "transactionTitle": "sdaa",
-            "transactionDescription": "dasd",
-            "transactionAmount": 10,
-            "transactionType": "EXPENSE"
-        },
-        {
-            "id": 3,
-            "transactionTitle": "sdaa",
-            "transactionDescription": "dasd",
-            "transactionAmount": 20,
-            "transactionType": "EXPENSE"
-        },
-        {
-            "id": 4,
-            "transactionTitle": "",
-            "transactionDescription": "",
-            "transactionAmount": 30,
-            "transactionType": "INCOME"
-        }
-    ]
+  "transactions": [
+    {
+      "transactionTitle": "Food",
+      "transactionDescription": "Lunch",
+      "transactionAmount": "100",
+      "transactionType": "expense",
+      "id": 1
+    },
+    {
+      "transactionTitle": "Cashback",
+      "transactionDescription": "Zomato",
+      "transactionAmount": "40",
+      "transactionType": "income",
+      "id": 2
+    }
+  ]
 }

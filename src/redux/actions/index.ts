@@ -1,19 +1,16 @@
 import axios from 'axios';
 export const FETCH_TRANSACTIONS = "FETCH_TRANSACTIONS";
-const apiUrl = "http://localhost:3001/transactions";
+export const ADD_TRANSACTION = "ADD_TRANSACTION";
+export const apiUrl = "http://localhost:3001/transactions";
 
 export interface ITransaction {
-    transactionId: number;
     transactionTitle: string;
     transactionDescription: string;
     transactionAmount: number;
-    transactionType: string
+    transactionType: string;
+    id?: number
 }
 
-export const addTransaction = (transaction: ITransaction) => ({
-    type: 'ADD_TRANSACTION',
-    ...transaction
-});
 
 export const setFilter = (filter: any) => ({
     type: 'FILTER',
@@ -33,5 +30,14 @@ export const fetchTransactions = () => {
             console.log(res);
             dispatch({ type: FETCH_TRANSACTIONS, transactions: res.data });
         }).catch(error => { throw (error); })
+    }
+}
+
+export const addTransaction = (transaction: ITransaction) => {
+    return (dispatch: any) => {
+        return axios.post(apiUrl, transaction).then(res => {
+            console.log(res);
+            dispatch({ type: ADD_TRANSACTION, transaction: res.data });
+        })
     }
 }
