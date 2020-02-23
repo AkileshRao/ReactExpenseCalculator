@@ -1,31 +1,25 @@
 import React from "react";
 import { TextField } from "office-ui-fabric-react/lib/TextField";
+import { useField } from "formik";
+import './form.scss';
+const TextArea = ({ label, ...props }: any) => {
+  const [field, meta] = useField(props);
 
-interface ITextareaProps {
-  title: string;
-  name: string;
-  rows?: number;
-  cols?: number;
-  value?: string;
-  handleChange?: any;
-  placeholder?: string;
-  label?: string;
+  return (
+    <div>
+      <TextField
+        multiline
+        label={props.label}
+        className="form-control"
+        {...props}
+        {...field}
+      />
+      {meta.touched && meta.error ? <div className='error'>{meta.error}</div> : null}
+    </div>
+  )
 }
 
-const TextArea: React.FunctionComponent<ITextareaProps> = props => (
-  <div className="form-group">
-    <TextField
-      multiline
-      label={props.label}
-      className="form-control"
-      name={props.name}
-      rows={props.rows}
-      cols={props.cols}
-      value={props.value}
-      onChange={props.handleChange}
-      placeholder={props.placeholder}
-    />
-  </div>
-);
+
+
 
 export default TextArea;

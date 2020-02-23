@@ -7,7 +7,6 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './redux/reducers';
 import * as serviceWorker from './serviceWorker';
 import thunk from "redux-thunk";
-import { fetchTransactions } from './redux/actions';
 import { initializeIcons } from '@uifabric/icons';
 
 

@@ -1,29 +1,19 @@
-.transaction-form{
-    padding: 1em 2em;
-    .row-1,.row-2,.row-3,.row-4{
-        margin: 1em 0;
-    }
-    .row-1{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .row-2{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .trans-amount{
-            width: 40%;
-        }
-        .trans-title{
-            width: 55%;
-        }
-    }
-    .row-4{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 2em;
+.trans_form{
+    padding: 1em;
+    .trans_type,.trans_title,.trans_desc,.trans_amount, .trans_submit{
+        margin: 1em 0 0 0;
     }
 
+    .trans_type{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .trans_submit{
+        margin: 1em auto;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
 }

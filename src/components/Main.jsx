@@ -1,7 +1,6 @@
 import React from 'react';
 import AddTransactionForm from '../containers/AddTransactionForm';
 import TransactionListContainer from '../containers/TransactionListContainer';
-import Footer from './Footer';
 import { Pivot, PivotItem } from 'office-ui-fabric-react/lib/Pivot';
 import './Main.scss';
 

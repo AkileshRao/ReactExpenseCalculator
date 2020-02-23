@@ -1,11 +1,11 @@
 import Button from './Button';
-import CheckBox from './Checkbox';
+import Radio from './Radio';
 import Input from './Input';
 import Textarea from './Textarea';
 
 export {
     Button,
-    CheckBox,
+    Radio,
     Input,
     Textarea
 }

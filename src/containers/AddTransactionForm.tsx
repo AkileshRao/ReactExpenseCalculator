@@ -1,46 +1,13 @@
 import { connect } from 'react-redux';
-import React, { useState, useEffect } from 'react'
-import { Input, Button, Textarea, CheckBox } from '../util/formComponents';
+import React from 'react'
+import { Input, Button, Textarea, Radio } from '../util/formComponents';
 import { addTransaction, fetchTransactions } from '../redux/actions/index';
+import { Formik, Form } from 'formik';
 import './AddTransactionForm.scss';
 import { IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
-
-const url = "http://localhost:3001";
+import * as Yup from 'yup';
 
 const AddTransactionForm = ({ dispatch }: any) => {
-    let initialState = {
-        transactionTitle: '',
-        transactionDescription: '',
-        transactionAmount: 0,
-        transactionType: ''
-    };
-
-    const [transaction, setTransaction] = useState(initialState);
-
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        dispatch(addTransaction(transaction));
-        dispatch(fetchTransactions());
-    }
-
-    const handleInput = (e: any) => {
-        let { value, name } = e.target;
-        setTransaction(prevTransaction => ({
-            ...prevTransaction,
-            [name]: value
-        }));
-    }
-
-    const handleCheckbox = (e: any, option: any) => {
-        setTransaction(prevTransaction => ({
-            ...prevTransaction,
-            transactionType: option.key
-        }))
-    }
-    // useEffect(() => {
-    //     console.log(transaction);
-    // })
-
     const options: IChoiceGroupOption[] = [
         { key: 'expense', text: 'Expense', iconProps: { iconName: 'Sad' } },
         { key: 'income', text: 'Income', iconProps: { iconName: 'Emoji2' } },
@@ -48,47 +15,44 @@ const AddTransactionForm = ({ dispatch }: any) => {
 
     return (
         <div className='transaction-form'>
-            <form onSubmit={handleSubmit}>
+            <Formik
+                initialValues={{
+                    transactionTitle: '',
+                    transactionDescription: '',
+                    transactionAmount: 0,
+                    transactionType: ''
+                }}
 
-                <div className="row-1">
-                    <CheckBox
-                        name={'transactionType'}
-                        title={'Transaction Type'}
-                        options={options}
-                        handleChange={handleCheckbox}
-                    />
-                </div>
-                <div className='row-2'>
-                    <Input
-                        placeholder={"Title"}
-                        name={'transactionTitle'}
-                        title={'Add transaction'}
-                        inputType={'text'}
-                        handleChange={handleInput}
-                        className={'trans-title'}
-                    />
+                validationSchema={
+                    Yup.object({
+                        transactionTitle: Yup.string()
+                            .min(5, "Must have at least 5 characters")
+                            .max(20, "Must be 20 characters or less")
+                            .required("Required"),
+                        transactionDescription: Yup.string()
+                            .min(10, "Please add at least 10 characters")
+                            .max(250, "Must be less than 250 characters."),
+                        transactionAmount: Yup.number()
+                            .required("Required"),
+                        transactionType: Yup.string()
+                            .required("Required")
+                    })
+                }
 
-                    <Input
-                        placeholder={'Amount'}
-                        name={'transactionAmount'}
-                        title={'Add amount'}
-                        inputType={'number'}
-                        handleChange={handleInput}
-                        className={'trans-amount'}
-                    />
-                </div>
-                <div className="row-3">
-                    <Textarea
-                        placeholder={'Description'}
-                        name={'transactionDescription'}
-                        title={'transaction Description'}
-                        handleChange={handleInput} />
-
-                </div>
-                <div className="row-4">
-                    <Button action={handleSubmit} value='Submit transaction' />
-                </div>
-            </form>
+                onSubmit={(values, { setSubmitting }) => {
+                    dispatch(addTransaction(values));
+                    dispatch(fetchTransactions());
+                    setSubmitting(false);
+                }}
+            >
+                <Form className='trans_form'>
+                    <Radio name='transactionType' options={options} className='trans_type' />
+                    <Input name='transactionTitle' type='text' placeholder='Transaction Title' className='trans_title' />
+                    <Input name='transactionAmount' type='text' placeholder='Transaction Amount' className='trans_amount' />
+                    <Textarea name='transactionDescription' placeholder='Transaction Description' className='trans_desc' />
+                    <Button className='trans_submit' type='submit'>Submit</Button>
+                </Form>
+            </Formik>
         </div >
     )
 }

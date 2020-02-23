@@ -13,6 +13,48 @@
       "transactionAmount": "40",
       "transactionType": "income",
       "id": 2
+    },
+    {
+      "transactionTitle": "",
+      "transactionDescription": "",
+      "transactionAmount": 0,
+      "transactionType": "",
+      "id": 3
+    },
+    {
+      "transactionTitle": "",
+      "transactionDescription": "",
+      "transactionAmount": 0,
+      "transactionType": "",
+      "id": 4
+    },
+    {
+      "transactionTitle": "s",
+      "transactionDescription": "w",
+      "transactionAmount": 0,
+      "transactionType": "on",
+      "id": 5
+    },
+    {
+      "transactionTitle": "ssssss",
+      "transactionDescription": "ssssssssssssssss",
+      "transactionAmount": "01",
+      "transactionType": "on",
+      "id": 6
+    },
+    {
+      "transactionTitle": "Expense",
+      "transactionDescription": "Shitsdsdasd",
+      "transactionAmount": "23",
+      "transactionType": "on",
+      "id": 7
+    },
+    {
+      "transactionTitle": "Ice cream",
+      "transactionDescription": "I ate an ice cream.",
+      "transactionAmount": "10",
+      "transactionType": "on",
+      "id": 8
     }
   ]
 }

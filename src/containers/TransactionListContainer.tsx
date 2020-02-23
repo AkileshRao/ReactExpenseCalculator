@@ -1,4 +1,4 @@
-import React, { useEffect, Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TransactionItem from '../components/TransactionItem';
 import { ITransaction, fetchTransactions } from '../redux/actions/index';

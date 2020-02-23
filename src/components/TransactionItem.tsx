@@ -1,6 +1,6 @@
 import React from 'react'
 import { ITransaction } from '../redux/actions';
-import { IPersonaSharedProps, Persona, PersonaInitialsColor, PersonaSize } from 'office-ui-fabric-react/lib/Persona';
+import { Persona, PersonaInitialsColor, PersonaSize } from 'office-ui-fabric-react/lib/Persona';
 import './TransactionItem.scss';
 
 const TransactionItem = (item: ITransaction) => {
@@ -10,7 +10,7 @@ const TransactionItem = (item: ITransaction) => {
                 text={item.transactionTitle}
                 secondaryText={item.transactionDescription}
                 size={PersonaSize.size48}
-                imageInitials={item.transactionAmount+""}
+                imageInitials={item.transactionAmount + ""}
                 initialsColor={item.transactionType === "income" ? PersonaInitialsColor.lightGreen : PersonaInitialsColor.lightRed}
             />
         </div>
