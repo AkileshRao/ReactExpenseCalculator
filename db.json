@@ -55,6 +55,13 @@
       "transactionAmount": "10",
       "transactionType": "on",
       "id": 8
+    },
+    {
+      "transactionTitle": "Test income",
+      "transactionDescription": "Testing notification",
+      "transactionAmount": "0100",
+      "transactionType": "on",
+      "id": 9
     }
   ]
 }

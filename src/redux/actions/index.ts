@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { ErrorMessage, SuccessMessage, WarningMessage } from '../../services/notificationService';
+
 export const FETCH_TRANSACTIONS = "FETCH_TRANSACTIONS";
 export const ADD_TRANSACTION = "ADD_TRANSACTION";
 export const apiUrl = "http://localhost:3001/transactions";
@@ -37,6 +39,7 @@ export const addTransaction = (transaction: ITransaction) => {
     return (dispatch: any) => {
         return axios.post(apiUrl, transaction).then(res => {
             console.log(res);
+            SuccessMessage("Transaction added successfully");
             dispatch({ type: ADD_TRANSACTION, transaction: res.data });
         })
     }
