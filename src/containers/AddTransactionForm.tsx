@@ -27,10 +27,35 @@ const AddTransactionForm = ({ dispatch }: any) => {
             failure: true
         }))
     }
+
+
+    let dismiss = (action: string) => {
+        if (action === "failure") {
+            setPostAddState(prevState => ({
+                ...prevState,
+                failure: false,
+            }))
+        } else {
+            setPostAddState(prevState => ({
+                ...prevState,
+                success: false,
+            }))
+        }
+
+    }
+
+    let notif;
+    if (postAddState.success) {
+        notif = (<div>{SuccessMessage("Added transaction", dismiss("success"))}</div>);
+    } else if (postAddState.failure) {
+        notif = (<div>{ErrorMessage("Sorry you fucked up", dismiss("failure"))}</div>);
+    }
+
+
+
     return (
         <div>
-
-            <div>{ErrorMessage("Sorry you fucked up")}</div>
+            <div>{notif}</div>
             <div className='transaction-form'>
                 <Formik
                     initialValues={{

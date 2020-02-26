@@ -39,7 +39,6 @@ export const addTransaction = (transaction: ITransaction) => {
     return (dispatch: any) => {
         return axios.post(apiUrl, transaction).then(res => {
             console.log(res);
-            SuccessMessage("Transaction added successfully");
             dispatch({ type: ADD_TRANSACTION, transaction: res.data });
         })
     }
