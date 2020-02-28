@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import TransactionItem from '../components/TransactionItem';
 import { ITransaction, fetchTransactions } from '../redux/actions/index';
 import './TransactionListContainer.scss';
+import { bindActionCreators } from 'redux';
 
 
-class TransactionList extends Component<{ transactions: any, fetchTransactions: any }> {
+class TransactionList extends Component<{ transactions: any, fetchTransactions: any, deleteTransaction: any }> {
 
     componentDidMount() {
         this.props.fetchTransactions();
@@ -33,9 +34,12 @@ const mapStateToProps = (state: any) => ({
     transactions: state.transactions,
 });
 
-const mapDispatchToProps = { fetchTransactions };
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        ...bindActionCreators({ fetchTransactions }, dispatch)
+    };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
+    export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
 
 
 

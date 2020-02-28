@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { transactions } from './transactions';
+import { transactions, transaction } from './transactions';
 import { FilterTypes } from '../actions/index';
 
 const setFilter = (state = FilterTypes.ALL, action: any) => {
@@ -14,5 +14,6 @@ const setFilter = (state = FilterTypes.ALL, action: any) => {
 
 export default combineReducers({
     transactions,
-    setFilter
+    setFilter,
+    transaction
 })

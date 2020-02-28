@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { ErrorMessage, SuccessMessage, WarningMessage } from '../../services/notificationService';
-
 export const FETCH_TRANSACTIONS = "FETCH_TRANSACTIONS";
 export const ADD_TRANSACTION = "ADD_TRANSACTION";
+export const DELETE_TRANSACTION = "DELETE_TRANSACTION";
 export const apiUrl = "http://localhost:3001/transactions";
 
 export interface ITransaction {
@@ -26,7 +25,7 @@ export const FilterTypes = {
 }
 
 
-export const fetchTransactions = () => {
+export const fetchTransactions: any = () => {
     return (dispatch: any) => {
         return axios.get(apiUrl).then(res => {
             console.log(res);
@@ -35,11 +34,18 @@ export const fetchTransactions = () => {
     }
 }
 
-export const addTransaction = (transaction: ITransaction) => {
+export const addTransaction: any = (transaction: ITransaction) => {
     return (dispatch: any) => {
         return axios.post(apiUrl, transaction).then(res => {
-            console.log(res);
             dispatch({ type: ADD_TRANSACTION, transaction: res.data });
+        })
+    }
+}
+
+export const deleteTransaction: any = (id: number) => {
+    return (dispatch: any) => {
+        return axios.delete(`${apiUrl}/${id}`).then(res => {
+            dispatch({ type: DELETE_TRANSACTION, transaction_id: id })
         })
     }
 }

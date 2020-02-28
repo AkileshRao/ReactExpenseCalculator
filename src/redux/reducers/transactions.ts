@@ -1,22 +1,23 @@
-import { ADD_TRANSACTION, FETCH_TRANSACTIONS } from "../actions";
+import { ADD_TRANSACTION, FETCH_TRANSACTIONS, DELETE_TRANSACTION } from "../actions";
 
-const addTransaction = (state = [], action: any) => {
+const transaction = (state = [], action: any) => {
     switch (action.type) {
         case ADD_TRANSACTION:
             return [
+                ...state,
                 action.transaction
             ]
+
+        case DELETE_TRANSACTION:
+            return state.filter((trans: any) => trans.id === action.transaction_id)
+
         default:
             return state
     }
 }
 
-const initialState = {
-    transactions: [],
-};
 
-
-const transactions = (state = initialState, action: any) => {
+const transactions = (state = [], action: any) => {
     switch (action.type) {
         case FETCH_TRANSACTIONS:
             return action.transactions
@@ -25,4 +26,4 @@ const transactions = (state = initialState, action: any) => {
     }
 }
 
-export { addTransaction, transactions };
+export { transaction, transactions };

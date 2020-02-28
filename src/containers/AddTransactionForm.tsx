@@ -14,7 +14,8 @@ const AddTransactionForm = ({ dispatch }: any) => {
     ];
 
     const [postAddState, setPostAddState] = useState({ success: false, failure: false });
-    let successFunc = () => {
+
+    let successFunc = () => {        
         setPostAddState(prevState => ({
             ...prevState,
             success: true
@@ -28,30 +29,26 @@ const AddTransactionForm = ({ dispatch }: any) => {
         }))
     }
 
-
-    let dismiss = (action: string) => {
+    let dismiss = (action: string) => {        
         if (action === "failure") {
             setPostAddState(prevState => ({
                 ...prevState,
                 failure: false,
             }))
-        } else {
+        } else {            
             setPostAddState(prevState => ({
                 ...prevState,
                 success: false,
-            }))
+            })); 
         }
-
     }
 
     let notif;
     if (postAddState.success) {
-        notif = (<div>{SuccessMessage("Added transaction", dismiss("success"))}</div>);
+        notif = (<div>{SuccessMessage("Added transaction", ()=>dismiss("success"))}</div>);
     } else if (postAddState.failure) {
-        notif = (<div>{ErrorMessage("Sorry you fucked up", dismiss("failure"))}</div>);
+        notif = (<div>{ErrorMessage("Sorry you fucked up", ()=>dismiss("failure"))}</div>);
     }
-
-
 
     return (
         <div>
