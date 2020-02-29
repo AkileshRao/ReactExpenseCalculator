@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TransactionItem from '../components/TransactionItem';
-import { ITransaction, fetchTransactions } from '../redux/actions/index';
+import { ITransaction, fetchTransactions, deleteTransaction } from '../redux/actions/index';
 import './TransactionListContainer.scss';
-import { bindActionCreators } from 'redux';
 
 
 class TransactionList extends Component<{ transactions: any, fetchTransactions: any, deleteTransaction: any }> {
@@ -18,7 +17,7 @@ class TransactionList extends Component<{ transactions: any, fetchTransactions: 
                 <div className='trans-list'>
                     <ul>
                         {this.props.transactions.map((transaction: ITransaction, id: number) => (
-                            <TransactionItem key={id} {...transaction} />
+                            <TransactionItem key={id} {...transaction} onClick={() => this.props.deleteTransaction(id)} />
                         ))}
                     </ul>
                 </div >
@@ -36,10 +35,11 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        ...bindActionCreators({ fetchTransactions }, dispatch)
+        fetchTransactions: () => dispatch(fetchTransactions()),
+        deleteTransaction : (id:number) => dispatch(deleteTransaction(id)) 
     };
-
-    export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
 
 
 

@@ -9,13 +9,13 @@ import * as Yup from 'yup';
 import { ErrorMessage, SuccessMessage, WarningMessage } from './../services/notificationService';
 const AddTransactionForm = ({ dispatch }: any) => {
     const options: IChoiceGroupOption[] = [
-        { key: 'expense', text: 'Expense', iconProps: { iconName: 'Sad' } },
-        { key: 'income', text: 'Income', iconProps: { iconName: 'Emoji2' } },
+        { key: 'expense', text: 'Expense', iconProps: { iconName: 'Sad' }, value: "expense" },
+        { key: 'income', text: 'Income', iconProps: { iconName: 'Emoji2' }, value: "income" },
     ];
 
     const [postAddState, setPostAddState] = useState({ success: false, failure: false });
 
-    let successFunc = () => {        
+    let successFunc = () => {
         setPostAddState(prevState => ({
             ...prevState,
             success: true
@@ -29,25 +29,25 @@ const AddTransactionForm = ({ dispatch }: any) => {
         }))
     }
 
-    let dismiss = (action: string) => {        
+    let dismiss = (action: string) => {
         if (action === "failure") {
             setPostAddState(prevState => ({
                 ...prevState,
                 failure: false,
             }))
-        } else {            
+        } else {
             setPostAddState(prevState => ({
                 ...prevState,
                 success: false,
-            })); 
+            }));
         }
     }
 
     let notif;
     if (postAddState.success) {
-        notif = (<div>{SuccessMessage("Added transaction", ()=>dismiss("success"))}</div>);
+        notif = (<div>{SuccessMessage("Added transaction", () => dismiss("success"))}</div>);
     } else if (postAddState.failure) {
-        notif = (<div>{ErrorMessage("Sorry you fucked up", ()=>dismiss("failure"))}</div>);
+        notif = (<div>{ErrorMessage("Sorry you fucked up", () => dismiss("failure"))}</div>);
     }
 
     return (
@@ -83,6 +83,8 @@ const AddTransactionForm = ({ dispatch }: any) => {
                         dispatch(fetchTransactions());
                         setSubmitting(false);
                     }}
+
+
                 >
                     <Form className='trans_form'>
                         <Radio name='transactionType' options={options} className='trans_type' />

@@ -11,8 +11,11 @@ const Radio = ({ children, ...props }: any) => {
         label={props.label}
         className='radio'
         type="radio"
+        // selectedKey
+        defaultSelectedKey="expense"
         {...field}
-        {...props} />
+        {...props} 
+        />
       {meta.touched && meta.error ? <div className='error'>{meta.error}</div> : null}
     </div>
   )

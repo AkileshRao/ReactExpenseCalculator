@@ -11,6 +11,7 @@ const Input = ({ label, ...props }: any) => {
                 label={props.label}
                 className="text-input"
                 {...field}
+
                 {...props}
             />
             {meta.touched && meta.error ? (<div className="error">{meta.error}</div>) : null}

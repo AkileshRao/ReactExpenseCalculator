@@ -5,7 +5,7 @@ import './TransactionItem.scss';
 
 const TransactionItem = (item: ITransaction) => {
     return (
-        <div className='trans-item'>
+        <div className='trans-item' onClick={item.onClick}>
             <Persona
                 text={item.transactionTitle}
                 secondaryText={item.transactionDescription}
@@ -13,6 +13,7 @@ const TransactionItem = (item: ITransaction) => {
                 imageInitials={item.transactionAmount + ""}
                 initialsColor={item.transactionType === "income" ? PersonaInitialsColor.lightGreen : PersonaInitialsColor.lightRed}
             />
+            
         </div>
     )
 }

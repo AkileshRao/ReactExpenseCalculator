@@ -9,19 +9,8 @@ export interface ITransaction {
     transactionDescription: string;
     transactionAmount: number;
     transactionType: string;
-    id?: number
-}
-
-
-export const setFilter = (filter: any) => ({
-    type: 'FILTER',
-    filter
-});
-
-export const FilterTypes = {
-    ALL: "ALL",
-    INCOME: "INCOME",
-    EXPENSE: "EXPENSE"
+    id?: number,
+    onClick?: any
 }
 
 
@@ -37,7 +26,7 @@ export const fetchTransactions: any = () => {
 export const addTransaction: any = (transaction: ITransaction) => {
     return (dispatch: any) => {
         return axios.post(apiUrl, transaction).then(res => {
-            dispatch({ type: ADD_TRANSACTION, transaction: res.data });
+            dispatch({ type: ADD_TRANSACTION, transaction: transaction });
         })
     }
 }
