@@ -1,18 +1,3 @@
 {
-  "transactions": [
-    {
-      "transactionTitle": "testExpense",
-      "transactionDescription": "",
-      "transactionAmount": "012",
-      "transactionType": "on",
-      "id": 1
-    },
-    {
-      "transactionTitle": "dsadsad",
-      "transactionDescription": "",
-      "transactionAmount": 0,
-      "transactionType": "income",
-      "id": 2
-    }
-  ]
+  "transactions": []
 }

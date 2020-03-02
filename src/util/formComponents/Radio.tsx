@@ -12,7 +12,6 @@ const Radio = ({ children, ...props }: any) => {
         className='radio'
         type="radio"
         // selectedKey
-        defaultSelectedKey="expense"
         {...field}
         {...props} 
         />

@@ -5,7 +5,6 @@ let initialTransactionState: any = {
 }
 
 const transaction = (state = initialTransactionState, action: any) => {
-    console.log(state.transactions);
     switch (action.type) {
         case ADD_TRANSACTION:
             return {

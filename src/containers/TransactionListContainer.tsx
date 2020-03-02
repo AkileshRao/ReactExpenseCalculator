@@ -17,7 +17,7 @@ class TransactionList extends Component<{ transactions: any, fetchTransactions: 
                 <div className='trans-list'>
                     <ul>
                         {this.props.transactions.map((transaction: ITransaction, id: number) => (
-                            <TransactionItem key={id} {...transaction} onClick={() => this.props.deleteTransaction(id)} />
+                            <TransactionItem key={id} {...transaction} onClick={() => this.props.deleteTransaction(transaction.id)} />
                         ))}
                     </ul>
                 </div >
@@ -36,7 +36,10 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: any) => {
     return {
         fetchTransactions: () => dispatch(fetchTransactions()),
-        deleteTransaction : (id:number) => dispatch(deleteTransaction(id)) 
+        deleteTransaction : (id:number) => {
+            dispatch(deleteTransaction(id));
+            dispatch(fetchTransactions);
+        } 
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
