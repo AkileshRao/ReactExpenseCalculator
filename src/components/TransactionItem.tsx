@@ -1,20 +1,19 @@
 import React from 'react'
 import { ITransaction } from '../redux/actions';
-import { Persona, PersonaInitialsColor, PersonaSize } from 'office-ui-fabric-react/lib/Persona';
 import './TransactionItem.scss';
+import { ListItem, ListItemAvatar, Avatar, ListItemText } from '@material-ui/core';
+import ImageIcon from '@material-ui/icons/Image';
 
 const TransactionItem = (item: ITransaction) => {
     return (
-        <div className='trans-item' onClick={item.onClick}>
-            <Persona
-                text={item.transactionTitle}
-                secondaryText={item.transactionDescription}
-                size={PersonaSize.size48}
-                imageInitials={item.transactionAmount + ""}
-                initialsColor={item.transactionType === "income" ? PersonaInitialsColor.lightGreen : PersonaInitialsColor.lightRed}
-            />
-            
-        </div>
+        <ListItem>
+            <ListItemAvatar>
+                <Avatar>
+                    <ImageIcon />
+                </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary={item.transactionTitle} secondary={item.transactionDescription} />
+        </ListItem>
     )
 }
 

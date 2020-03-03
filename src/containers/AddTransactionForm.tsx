@@ -1,17 +1,13 @@
 import { connect } from 'react-redux';
 import React, { useState } from 'react'
-import { Input, Button, Textarea, Radio } from '../util/formComponents';
+import { MyButton, MyButtonGroup, MyInput, MyTextarea } from '../util/formComponents';
 import { addTransaction, fetchTransactions } from '../redux/actions/index';
 import { Formik, Form } from 'formik';
 import './AddTransactionForm.scss';
-import { IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as Yup from 'yup';
-import { ErrorMessage, SuccessMessage, WarningMessage } from './../services/notificationService';
+import { ButtonGroup } from '@material-ui/core';
+
 const AddTransactionForm = ({ dispatch }: any) => {
-    const options: IChoiceGroupOption[] = [
-        { key: 'expense', text: 'Expense', iconProps: { iconName: 'Sad' }, value: "expense" },
-        { key: 'income', text: 'Income', iconProps: { iconName: 'Emoji2' }, value: "income" },
-    ];
 
     const [postAddState, setPostAddState] = useState({ success: false, failure: false });
 
@@ -29,30 +25,8 @@ const AddTransactionForm = ({ dispatch }: any) => {
         }))
     }
 
-    let dismiss = (action: string) => {
-        if (action === "failure") {
-            setPostAddState(prevState => ({
-                ...prevState,
-                failure: false,
-            }))
-        } else {
-            setPostAddState(prevState => ({
-                ...prevState,
-                success: false,
-            }));
-        }
-    }
-
-    let notif;
-    if (postAddState.success) {
-        notif = (<div>{SuccessMessage("Added transaction", () => dismiss("success"))}</div>);
-    } else if (postAddState.failure) {
-        notif = (<div>{ErrorMessage("Sorry you fucked up", () => dismiss("failure"))}</div>);
-    }
-
     return (
         <div>
-            <div>{notif}</div>
             <div className='transaction-form'>
                 <Formik
                     initialValues={{
@@ -83,15 +57,13 @@ const AddTransactionForm = ({ dispatch }: any) => {
                         dispatch(fetchTransactions());
                         setSubmitting(false);
                     }}
-
-
                 >
                     <Form className='trans_form'>
-                        <Radio name='transactionType' options={options} className='trans_type' />
-                        <Input name='transactionTitle' type='text' placeholder='Transaction Title' className='trans_title' />
-                        <Input name='transactionAmount' type='text' placeholder='Transaction Amount' className='trans_amount' />
-                        <Textarea name='transactionDescription' placeholder='Transaction Description' className='trans_desc' />
-                        <Button className='trans_submit' type='submit'>Submit</Button>
+                        <MyButtonGroup name='transactionType' className='trans_type' />
+                        <MyInput name='transactionTitle' type='text' placeholder='Transaction Title' className='trans_title' />
+                        <MyInput name='transactionAmount' type='text' placeholder='Transaction Amount' className='trans_amount' />
+                        <MyTextarea name='transactionDescription' placeholder='Transaction Description' className='trans_desc' />
+                        <MyButton className='trans_submit' type='submit'>Submit</MyButton>
                     </Form>
                 </Formik>
             </div >

@@ -1,7 +1,7 @@
 import { ADD_TRANSACTION, FETCH_TRANSACTIONS, DELETE_TRANSACTION } from "../actions";
 
 
-let initial = {
+let initial: any = {
     transactions: []
 }
 const transactions = (state = initial, action: any) => {

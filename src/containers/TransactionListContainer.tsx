@@ -3,10 +3,18 @@ import { connect } from 'react-redux';
 import TransactionItem from '../components/TransactionItem';
 import { ITransaction, fetchTransactions, deleteTransaction } from '../redux/actions/index';
 import './TransactionListContainer.scss';
+import { List, Dialog, DialogTitle } from '@material-ui/core';
 
 
-class TransactionList extends Component<{ transactions: any, fetchTransactions: any, deleteTransaction: any }> {
-
+class TransactionList extends Component<{ transactions: any, fetchTransactions: any, deleteTransaction: any }, { selectedDelete: any, deleteModal: any, deleteNotif: any }> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            selectedDelete: 0,
+            deleteModal: false,
+            deleteNotif: false
+        };
+    }
     componentDidMount() {
         this.props.fetchTransactions();
     }
@@ -14,13 +22,16 @@ class TransactionList extends Component<{ transactions: any, fetchTransactions: 
     render() {
         if (this.props.transactions.length) {
             return (
-                <div className='trans-list'>
-                    <ul>
-                        {this.props.transactions.map((transaction: ITransaction, id: number) => (
-                            <TransactionItem key={id} {...transaction} onClick={() => this.props.deleteTransaction(transaction.id)} />
-                        ))}
-                    </ul>
-                </div >
+                <div>
+
+                    <div className='trans-list'>
+                        <List>
+                            {this.props.transactions.map((transaction: ITransaction, id: number) => (
+                                <TransactionItem key={id} {...transaction} onClick={() => this.setState({ selectedDelete: transaction.id })} />
+                            ))}
+                        </List>
+                    </div>
+                </div>
             )
         }
         else {
@@ -29,9 +40,11 @@ class TransactionList extends Component<{ transactions: any, fetchTransactions: 
     }
 }
 
-const mapStateToProps = (state: any) => ({
-    transactions: state.transactions,
-});
+const mapStateToProps = (state: any) => {
+    return {
+        transactions: state.transactions.transactions
+    }
+}
 
 const mapDispatchToProps = (dispatch: any) => {
     return {

@@ -1,74 +1,18 @@
 {
   "transactions": [
     {
-      "transactionTitle": "lllll",
+      "transactionTitle": "tesstingdsa",
       "transactionDescription": "",
-      "transactionAmount": 0,
-      "transactionType": "income",
-      "id": 3
-    },
-    {
-      "transactionTitle": "lllll",
-      "transactionDescription": "",
-      "transactionAmount": 0,
-      "transactionType": "income",
-      "id": 4
-    },
-    {
-      "transactionTitle": "lllll",
-      "transactionDescription": "",
-      "transactionAmount": 0,
-      "transactionType": "income",
-      "id": 5
-    },
-    {
-      "transactionTitle": "lllll",
-      "transactionDescription": "",
-      "transactionAmount": 0,
-      "transactionType": "income",
-      "id": 6
-    },
-    {
-      "transactionTitle": "lllll",
-      "transactionDescription": "",
-      "transactionAmount": 0,
-      "transactionType": "income",
-      "id": 7
-    },
-    {
-      "transactionTitle": "aasdasd",
-      "transactionDescription": "",
-      "transactionAmount": 0,
+      "transactionAmount": "123",
       "transactionType": "expense",
-      "id": 8
+      "id": 17
     },
     {
-      "transactionTitle": "aasdasd",
+      "transactionTitle": "dsadds",
       "transactionDescription": "",
-      "transactionAmount": 0,
+      "transactionAmount": "0123",
       "transactionType": "expense",
-      "id": 9
-    },
-    {
-      "transactionTitle": "aasdasdasd",
-      "transactionDescription": "",
-      "transactionAmount": 0,
-      "transactionType": "income",
-      "id": 10
-    },
-    {
-      "transactionTitle": "aasdasdasd",
-      "transactionDescription": "",
-      "transactionAmount": 0,
-      "transactionType": "income",
-      "id": 11
-    },
-    {
-      "transactionTitle": "aasdasdasd",
-      "transactionDescription": "",
-      "transactionAmount": 0,
-      "transactionType": "income",
-      "id": 12
+      "id": 18
     }
   ]
 }

@@ -1,12 +1,14 @@
 import React from 'react';
-import { PrimaryButton } from 'office-ui-fabric-react';
+import Button from '@material-ui/core/Button';
 
-const Button = (props: any) => {
+const MyButton = (props: any) => {
     return (
         <div>
-            <PrimaryButton {...props} />
+            <Button variant="contained" color="primary">
+                {props.name}
+            </Button>
         </div>
     );
 };
 
-export default Button;
+export default MyButton;

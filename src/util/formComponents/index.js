@@ -1,11 +1,10 @@
-import Button from './Button';
-import Radio from './Radio';
-import Input from './Input';
-import Textarea from './Textarea';
+import MyButton from './Button';
+import MyButtonGroup from './ButtonGroup';
+import {MyInput, MyTextarea} from './Input';
 
 export {
-    Button,
-    Radio,
-    Input,
-    Textarea
+    MyButton,
+    MyButtonGroup,
+    MyInput,
+    MyTextarea
 }
