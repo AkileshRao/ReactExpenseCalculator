@@ -8,12 +8,14 @@ import rootReducer from './redux/reducers';
 import * as serviceWorker from './serviceWorker';
 import thunk from "redux-thunk";
 import { initializeIcons } from '@uifabric/icons';
+import { fetchTransactions } from './redux/actions';
 
 
 initializeIcons();
+// fetchTransactions();
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
-
+store.dispatch(fetchTransactions());
 ReactDOM.render(
     <Provider store={store}>
         <App />

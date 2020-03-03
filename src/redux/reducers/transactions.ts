@@ -1,33 +1,34 @@
 import { ADD_TRANSACTION, FETCH_TRANSACTIONS, DELETE_TRANSACTION } from "../actions";
 
-let initialTransactionState: any = {
+
+let initial = {
     transactions: []
 }
-
-const transaction = (state = initialTransactionState, action: any) => {
-    console.log(state.transactions);
+const transactions = (state = initial, action: any) => {
     switch (action.type) {
         case ADD_TRANSACTION:
             return {
                 ...state,
-                transactions: state.transactions.push(action.transaction),
+                transactions: [...state.transactions, action.transaction]
             }
 
-        case DELETE_TRANSACTION:
-            return state.transactions.filter((trans: any) => trans.id !== action.transaction_id)
-
-        default:
-            return state
-    }
-}
-
-const transactions = (state = [], action: any) => {
-    switch (action.type) {
+        case DELETE_TRANSACTION: {
+            let newArr = state.transactions.filter((trans: any) => trans.id != action.transaction_id)
+            return {
+                ...state,
+                transactions: newArr
+            }
+        }
         case FETCH_TRANSACTIONS:
-            return action.transactions
+            return {
+                transactions: action.transactions
+            }
+
         default:
             return state
     }
 }
 
-export { transaction, transactions };
+
+
+export { transactions };

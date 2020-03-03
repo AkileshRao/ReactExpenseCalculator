@@ -16,8 +16,7 @@ export interface ITransaction {
 
 export const fetchTransactions: any = () => {
     return (dispatch: any) => {
-        return axios.get(apiUrl).then(res => {
-            console.log(res);
+        return axios.get(apiUrl).then(res => {            
             dispatch({ type: FETCH_TRANSACTIONS, transactions: res.data });
         }).catch(error => { throw (error); })
     }
