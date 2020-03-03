@@ -26,7 +26,7 @@ export const addTransaction: any = (transaction: ITransaction) => {
     return (dispatch: any) => {
         return axios.post(apiUrl, transaction).then(res => {
             dispatch({ type: ADD_TRANSACTION, transaction: transaction });
-        })
+        }).catch(error => { throw (error); })
     }
 }
 
@@ -34,6 +34,6 @@ export const deleteTransaction: any = (id: number) => {
     return (dispatch: any) => {
         return axios.delete(`${apiUrl}/${id}`).then(res => {
             dispatch({ type: DELETE_TRANSACTION, transaction_id: id })
-        })
+        }).catch(error => { throw (error); })
     }
 }
