@@ -41,7 +41,7 @@ const AddTransactionForm = ({ dispatch }: any) => {
                         transactionTitle: '',
                         transactionDescription: '',
                         transactionAmount: 0,
-                        transactionType: 'expense'
+                        transactionType: ''
                     }}
 
                     validationSchema={
@@ -59,11 +59,9 @@ const AddTransactionForm = ({ dispatch }: any) => {
                     }
 
                     onSubmit={(values, { setSubmitting }) => {
-                        console.log(values);
-
-                        // dispatch(addTransaction(values)).then(successFunc, failureFunc);
-                        // dispatch(fetchTransactions());
-                        // setSubmitting(false);
+                        dispatch(addTransaction(values)).then(successFunc, failureFunc);
+                        dispatch(fetchTransactions());
+                        setSubmitting(false);
                     }}
                 >
                     <Form className='trans_form'>

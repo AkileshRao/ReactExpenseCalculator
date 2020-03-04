@@ -17,10 +17,10 @@ const MyRadioGroup = ({ children, ...props }: any) => {
   }, [selectedValue])
   return (
     <div>
-      <RadioGroup {...field} {...props} onChange={handleChange}>
+      <RadioGroup {...field} {...props}>
         {
           props.options.map((option: any, index: number) => (
-            <FormControlLabel key={index} value={option.value} control={<Radio checked={selectedValue === option.value} value={option.value} />} label={option.label} />
+            <FormControlLabel key={index} control={<Radio checked={selectedValue === option.value} value={option.value}  onChange={handleChange}/>} label={option.label} />
           ))
         }
       </RadioGroup>

@@ -1,5 +1,9 @@
 .trans_form{
-    min-width: 400px;
+    min-width: 500px;
+    background: white;
+    padding: 1em 2em;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.1);
     .my-form-group{
         margin: 1em 0;
         .text-input{

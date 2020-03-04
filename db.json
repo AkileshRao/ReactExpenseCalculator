@@ -69,6 +69,20 @@
       "transactionAmount": 0,
       "transactionType": "expense",
       "id": 26
+    },
+    {
+      "transactionTitle": "asdasd",
+      "transactionDescription": "sadasddasd",
+      "transactionAmount": "123",
+      "transactionType": "income",
+      "id": 27
+    },
+    {
+      "transactionTitle": "asdasddas",
+      "transactionDescription": "sadasddasd",
+      "transactionAmount": "123",
+      "transactionType": "expense",
+      "id": 28
     }
   ]
 }
