@@ -5,10 +5,12 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import clsx from 'clsx';
-import { Link } from 'react-router-dom';
+import { Link, Route, BrowserRouter, Switch } from 'react-router-dom';
 
 import './Main.scss';
 import { CssBaseline, makeStyles, Theme, createStyles, useTheme, AppBar, Toolbar, IconButton, Typography, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import AddTransactionForm from '../containers/AddTransactionForm';
+import TransactionListContainer from '../containers/TransactionListContainer';
 
 
 const drawerWidth = 240;
@@ -115,37 +117,49 @@ const Main = () => {
               </Typography>
                 </Toolbar>
             </AppBar>
-            <Drawer
-                variant="permanent"
-                className={clsx(classes.drawer, {
-                    [classes.drawerOpen]: open,
-                    [classes.drawerClose]: !open,
-                })}
-                classes={{
-                    paper: clsx({
+            <BrowserRouter>
+                <Drawer
+                    variant="permanent"
+                    className={clsx(classes.drawer, {
                         [classes.drawerOpen]: open,
                         [classes.drawerClose]: !open,
-                    }),
-                }}
-            >
-                <div className={classes.toolbar}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                    </IconButton>
-                </div>
-                <Divider />
-                <List>
-                    {['Inbox', 'Starred'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon><Link to='/'>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}Home</Link></ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-            </Drawer>
-            <main className={classes.content}>
-                <h1>ok</h1>
-            </main>
+                    })}
+                    classes={{
+                        paper: clsx({
+                            [classes.drawerOpen]: open,
+                            [classes.drawerClose]: !open,
+                        }),
+                    }}
+                >
+                    <div className={classes.toolbar}>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    <List>
+                        <Link to='/add-transaction'>
+                            <ListItem button>
+                                <ListItemIcon><MailIcon /></ListItemIcon>
+                                <ListItemText>Add Transaction</ListItemText>
+                            </ListItem>
+                        </Link>
+                        <Link to='/transactions'>
+                            <ListItem button>
+                                <ListItemIcon><InboxIcon /></ListItemIcon>
+                                <ListItemText>Transactions</ListItemText>
+                            </ListItem>
+                        </Link>
+                    </List>
+                </Drawer>
+                <main className={classes.content}>
+                    <Switch>
+                        <Route exact path='/' component={TransactionListContainer} />
+                        <Route path='/add-transaction' component={AddTransactionForm} />
+                        <Route path='/transactions' component={TransactionListContainer} />
+                    </Switch>
+                </main>
+            </BrowserRouter>
         </div>
     );
 }

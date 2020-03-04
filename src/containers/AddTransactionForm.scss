@@ -1,19 +1,26 @@
 .trans_form{
-    padding: 1em;
-    .trans_type,.trans_title,.trans_desc,.trans_amount, .trans_submit{
-        margin: 1em 0 0 0;
+    min-width: 400px;
+    .my-form-group{
+        margin: 1em 0;
+        .text-input{
+            width: 100% !important; 
+        }
+        button{
+            min-width: 100px;
+        }
     }
-
-    .trans_type{
+    .btn-container{
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+    }
+    
+    .radio-container{
+        div{
+            display: flex !important;
+            flex-direction: row !important; 
+        }
     }
 
-    .trans_submit{
-        margin: 1em auto;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    }
+
 }

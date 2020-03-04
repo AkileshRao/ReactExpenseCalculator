@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 import React, { useState } from 'react'
-import { MyButton, MyButtonGroup, MyInput, MyTextarea } from '../util/formComponents';
+import { MyButton, MyRadioGroup, MyInput, MyTextarea } from '../util/formComponents';
 import { addTransaction, fetchTransactions } from '../redux/actions/index';
 import { Formik, Form } from 'formik';
 import './AddTransactionForm.scss';
 import * as Yup from 'yup';
-import { ButtonGroup } from '@material-ui/core';
 
 const AddTransactionForm = ({ dispatch }: any) => {
 
@@ -25,6 +24,15 @@ const AddTransactionForm = ({ dispatch }: any) => {
         }))
     }
 
+    let options = [{
+        value: "income",
+        label: "Income"
+    },
+    {
+        value: "expense",
+        label: "Expense"
+    }];
+
     return (
         <div>
             <div className='transaction-form'>
@@ -33,7 +41,7 @@ const AddTransactionForm = ({ dispatch }: any) => {
                         transactionTitle: '',
                         transactionDescription: '',
                         transactionAmount: 0,
-                        transactionType: ''
+                        transactionType: 'expense'
                     }}
 
                     validationSchema={
@@ -47,23 +55,36 @@ const AddTransactionForm = ({ dispatch }: any) => {
                                 .max(250, "Must be less than 250 characters."),
                             transactionAmount: Yup.number()
                                 .required("Required"),
-                            transactionType: Yup.string()
-                                .required("Required")
                         })
                     }
 
                     onSubmit={(values, { setSubmitting }) => {
-                        dispatch(addTransaction(values)).then(successFunc, failureFunc);
-                        dispatch(fetchTransactions());
-                        setSubmitting(false);
+                        console.log(values);
+
+                        // dispatch(addTransaction(values)).then(successFunc, failureFunc);
+                        // dispatch(fetchTransactions());
+                        // setSubmitting(false);
                     }}
                 >
                     <Form className='trans_form'>
-                        <MyButtonGroup name='transactionType' className='trans_type' />
-                        <MyInput name='transactionTitle' type='text' placeholder='Transaction Title' className='trans_title' />
-                        <MyInput name='transactionAmount' type='text' placeholder='Transaction Amount' className='trans_amount' />
-                        <MyTextarea name='transactionDescription' placeholder='Transaction Description' className='trans_desc' />
-                        <MyButton className='trans_submit' type='submit'>Submit</MyButton>
+                        <div className="my-form-group radio-container">
+                            <MyRadioGroup
+                                name='transactionType'
+                                className='trans_type'
+                                options={options} />
+                        </div>
+                        <div className="my-form-group">
+                            <MyInput name='transactionTitle' type='text' placeholder='Transaction Title' className='trans_title' />
+                        </div>
+                        <div className="my-form-group">
+                            <MyInput name='transactionAmount' type='text' placeholder='Transaction Amount' className='trans_amount' />
+                        </div>
+                        <div className="my-form-group">
+                            <MyTextarea name='transactionDescription' placeholder='Transaction Description' className='trans_desc' />
+                        </div>
+                        <div className='my-form-group btn-container'>
+                            <MyButton className='trans_submit' type='submit' name="Add">Submit</MyButton>
+                        </div>
                     </Form>
                 </Formik>
             </div >

@@ -3,11 +3,9 @@ import Button from '@material-ui/core/Button';
 
 const MyButton = (props: any) => {
     return (
-        <div>
-            <Button variant="contained" color="primary">
-                {props.name}
-            </Button>
-        </div>
+        <Button {...props} variant="contained" color="primary">
+            {props.name}
+        </Button>
     );
 };
 

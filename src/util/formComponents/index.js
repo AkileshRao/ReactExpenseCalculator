@@ -1,10 +1,10 @@
 import MyButton from './Button';
-import MyButtonGroup from './ButtonGroup';
+import MyRadioGroup from './RadioGroup';
 import {MyInput, MyTextarea} from './Input';
 
 export {
     MyButton,
-    MyButtonGroup,
+    MyRadioGroup,
     MyInput,
     MyTextarea
 }

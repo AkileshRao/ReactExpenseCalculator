@@ -9,6 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import thunk from "redux-thunk";
 import { fetchTransactions } from './redux/actions';
 import logger from 'redux-logger';
+import { BrowserRouter } from 'react-router-dom';
 
 // fetchTransactions();
 
