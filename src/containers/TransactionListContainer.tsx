@@ -4,9 +4,9 @@ import TransactionItem from '../components/TransactionItem';
 import { ITransaction, fetchTransactions, deleteTransaction } from '../redux/actions/index';
 import './TransactionListContainer.scss';
 import { List } from '@material-ui/core';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import AddTransactionForm from './AddTransactionForm';
-import { useHistory } from "react-router-dom";
+import Test from './Test';
 
 
 class TransactionList extends Component<{ transactions: any, fetchTransactions: any, deleteTransaction: any }, { selectedDelete: any, deleteModal: any, deleteNotif: any }> {
@@ -18,27 +18,26 @@ class TransactionList extends Component<{ transactions: any, fetchTransactions: 
             deleteNotif: false
         };
     }
-    public history = useHistory();
 
     componentDidMount() {
         this.props.fetchTransactions();
+
     }
 
     render() {
         if (this.props.transactions.length) {
             return (
-                // <BrowserRouter>
                 <div>
                     <div className='trans-list'>
                         <List>
                             {this.props.transactions.map((transaction: ITransaction, id: number) => (
-                                
+                                <Link to={`/transactions/${transaction.id}`}>
                                     <TransactionItem  {...transaction} onClick={() => this.setState({ selectedDelete: transaction.id })} />
+                                </Link>
                             ))}
                         </List>
                     </div>
                 </div>
-                // </BrowserRouter>
             )
         }
         else {
