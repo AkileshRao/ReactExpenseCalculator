@@ -3,25 +3,20 @@ import React, { useState } from 'react'
 import { MyButton, MyRadioGroup, MyInput, MyTextarea } from '../util/formComponents';
 import { addTransaction, fetchTransactions } from '../redux/actions/index';
 import { Formik, Form } from 'formik';
+import Notification from '../services/notificationService';
 import './AddTransactionForm.scss';
 import * as Yup from 'yup';
 
 const AddTransactionForm = ({ dispatch }: any) => {
-
-    const [postAddState, setPostAddState] = useState({ success: false, failure: false });
+    let notification = new Notification();
+    const [postAddState, setPostAddState] = useState(null);
 
     let successFunc = () => {
-        setPostAddState(prevState => ({
-            ...prevState,
-            success: true
-        }))
+        setPostAddState('success')
     }
 
     let failureFunc = () => {
-        setPostAddState(prevState => ({
-            ...prevState,
-            failure: true
-        }))
+        setPostAddState('error')
     }
 
     let options = [{
@@ -32,6 +27,10 @@ const AddTransactionForm = ({ dispatch }: any) => {
         value: "expense",
         label: "Expense"
     }];
+
+    const handleClose = () => {
+        setPostAddState(null)
+    }
 
     return (
         <div>
@@ -62,9 +61,15 @@ const AddTransactionForm = ({ dispatch }: any) => {
                         dispatch(addTransaction(values)).then(successFunc, failureFunc);
                         dispatch(fetchTransactions());
                         setSubmitting(false);
+                        // notification.success("Lets go boi");
                     }}
                 >
+
                     <Form className='trans_form'>
+                        <div>
+                            {postAddState === "success" ? notification.success("Transaction added successfully", handleClose) :
+                                (postAddState === "error" ? notification.error("Something went wrong", handleClose) : null)}
+                        </div>
                         <div className="my-form-group radio-container">
                             <MyRadioGroup
                                 name='transactionType'

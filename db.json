@@ -83,6 +83,13 @@
       "transactionAmount": "123",
       "transactionType": "expense",
       "id": 28
+    },
+    {
+      "transactionTitle": "testing",
+      "transactionDescription": "",
+      "transactionAmount": 0,
+      "transactionType": "expense",
+      "id": 29
     }
   ]
 }
