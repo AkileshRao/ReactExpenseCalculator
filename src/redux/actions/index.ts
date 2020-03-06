@@ -2,6 +2,7 @@ import axios from 'axios';
 export const FETCH_TRANSACTIONS = "FETCH_TRANSACTIONS";
 export const ADD_TRANSACTION = "ADD_TRANSACTION";
 export const DELETE_TRANSACTION = "DELETE_TRANSACTION";
+export const FETCH_ONE_TRANSACTION = "FETCH_ONE_TRANSACTION";
 export const apiUrl = "http://localhost:3001/transactions";
 
 export interface ITransaction {
@@ -16,7 +17,7 @@ export interface ITransaction {
 
 export const fetchTransactions: any = () => {
     return (dispatch: any) => {
-        return axios.get(apiUrl).then(res => {            
+        return axios.get(apiUrl).then(res => {
             dispatch({ type: FETCH_TRANSACTIONS, transactions: res.data });
         }).catch(error => { throw (error); })
     }
@@ -37,3 +38,11 @@ export const deleteTransaction: any = (id: number) => {
         }).catch(error => { throw (error); })
     }
 }
+
+// export const fetchSingleTransaction: any = (id: number) => {
+//     return (dispatch: any) => {
+//         return axios.get(`${apiUrl}/${id}`).then((res: any) => {
+//             dispatch({ type: FETCH_ONE_TRANSACTION, payload: res.transaction })
+//         })
+//     }
+// }

@@ -6,8 +6,15 @@ import { Formik, Form } from 'formik';
 import Notification from '../services/notificationService';
 import './AddTransactionForm.scss';
 import * as Yup from 'yup';
+import { withRouter } from 'react-router';
 
-const AddTransactionForm = ({ dispatch }: any) => {
+
+const mapStateToProps = (state: any) => {
+    return { transactions: state.transactions }
+}
+
+
+const AddTransactionForm = ({ dispatch, transactions, match, ...props }: any) => {
     let notification = new Notification();
     const [postAddState, setPostAddState] = useState(null);
 
@@ -32,7 +39,14 @@ const AddTransactionForm = ({ dispatch }: any) => {
         setPostAddState(null)
     }
 
+    // console.log(match.params.transactionId);
+    // transactions.transactions.map(t => console.log(t)
+    // )
+
+    console.log(transactions.transactions.filter((trans: any) => trans.id == match.params.transactionId));
+
     return (
+
         <div>
             <div className='transaction-form'>
                 <Formik
@@ -95,4 +109,4 @@ const AddTransactionForm = ({ dispatch }: any) => {
     )
 }
 
-export default connect()(AddTransactionForm);
+export default connect(mapStateToProps)(withRouter(AddTransactionForm));

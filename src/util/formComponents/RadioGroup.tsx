@@ -11,10 +11,10 @@ const MyRadioGroup = ({ children, ...props }: any) => {
     setSelectedValue(e.target.value);
   }
 
-  useEffect(() => {
-    console.log(selectedValue);
+  // useEffect(() => {
+  //   console.log(selectedValue);
     
-  }, [selectedValue])
+  // }, [selectedValue])
   return (
     <div>
       <RadioGroup {...field} {...props}>

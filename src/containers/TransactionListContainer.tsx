@@ -6,7 +6,6 @@ import './TransactionListContainer.scss';
 import { List } from '@material-ui/core';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import AddTransactionForm from './AddTransactionForm';
-import Test from './Test';
 
 
 class TransactionList extends Component<{ transactions: any, fetchTransactions: any, deleteTransaction: any }, { selectedDelete: any, deleteModal: any, deleteNotif: any }> {
@@ -31,7 +30,7 @@ class TransactionList extends Component<{ transactions: any, fetchTransactions: 
                     <div className='trans-list'>
                         <List>
                             {this.props.transactions.map((transaction: ITransaction, id: number) => (
-                                <Link to={`/transactions/${transaction.id}`}>
+                                <Link to={`/transactions/${transaction.id}`} key={id}>
                                     <TransactionItem  {...transaction} onClick={() => this.setState({ selectedDelete: transaction.id })} />
                                 </Link>
                             ))}
