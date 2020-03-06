@@ -1,31 +1,21 @@
 import { connect } from 'react-redux';
 import React, { useState } from 'react'
 import { MyButton, MyRadioGroup, MyInput, MyTextarea } from '../util/formComponents';
-import { addTransaction, fetchTransactions } from '../redux/actions/index';
+import { addTransaction, fetchTransactions, ITransaction } from '../redux/actions/index';
 import { Formik, Form } from 'formik';
 import Notification from '../services/notificationService';
 import './AddTransactionForm.scss';
 import * as Yup from 'yup';
 import { withRouter } from 'react-router';
 
-
 const mapStateToProps = (state: any) => {
-    return { transactions: state.transactions }
+    return { transactions: state.transactions.transactions }
 }
-
 
 const AddTransactionForm = ({ dispatch, transactions, match, ...props }: any) => {
     let notification = new Notification();
-    const [postAddState, setPostAddState] = useState(null);
 
-    let successFunc = () => {
-        setPostAddState('success')
-    }
-
-    let failureFunc = () => {
-        setPostAddState('error')
-    }
-
+    let fetchedTransaction = transactions.find((t: ITransaction) => t.id == match.params.id);
     let options = [{
         value: "income",
         label: "Income"
@@ -35,27 +25,35 @@ const AddTransactionForm = ({ dispatch, transactions, match, ...props }: any) =>
         label: "Expense"
     }];
 
+    const [postAddState, setPostAddState] = useState(null);
+
+    const successFunc = () => {
+        setPostAddState('success')
+    }
+
+    const failureFunc = () => {
+        setPostAddState('error')
+    }
+
     const handleClose = () => {
         setPostAddState(null)
     }
 
-    // console.log(match.params.transactionId);
-    // transactions.transactions.map(t => console.log(t)
-    // )
-
-    console.log(transactions.transactions.filter((trans: any) => trans.id == match.params.transactionId));
-
     return (
-
         <div>
             <div className='transaction-form'>
                 <Formik
-                    initialValues={{
-                        transactionTitle: '',
-                        transactionDescription: '',
-                        transactionAmount: 0,
-                        transactionType: ''
-                    }}
+                    initialValues={fetchedTransaction ? {
+                        transactionTitle: fetchedTransaction.transactionTitle,
+                        transactionDescription: fetchedTransaction.transactionDescription,
+                        transactionAmount: fetchedTransaction.transactionAmount,
+                        transactionType: fetchedTransaction.transactionType
+                    } : {
+                            transactionTitle: '',
+                            transactionDescription: '',
+                            transactionAmount: 0,
+                            transactionType: ''
+                        }}
 
                     validationSchema={
                         Yup.object({
@@ -72,9 +70,12 @@ const AddTransactionForm = ({ dispatch, transactions, match, ...props }: any) =>
                     }
 
                     onSubmit={(values, { setSubmitting }) => {
-                        dispatch(addTransaction(values)).then(successFunc, failureFunc);
-                        dispatch(fetchTransactions());
-                        setSubmitting(false);
+                        if(!fetchedTransaction){
+                            dispatch(addTransaction(values)).then(successFunc, failureFunc);
+                            dispatch(fetchTransactions());
+                            setSubmitting(false);
+                        }
+
                         // notification.success("Lets go boi");
                     }}
                 >
@@ -88,7 +89,8 @@ const AddTransactionForm = ({ dispatch, transactions, match, ...props }: any) =>
                             <MyRadioGroup
                                 name='transactionType'
                                 className='trans_type'
-                                options={options} />
+                                options={options}
+                                currenttype={fetchedTransaction ? fetchedTransaction.transactionType : ''} />
                         </div>
                         <div className="my-form-group">
                             <MyInput name='transactionTitle' type='text' placeholder='Transaction Title' className='trans_title' />
@@ -100,7 +102,7 @@ const AddTransactionForm = ({ dispatch, transactions, match, ...props }: any) =>
                             <MyTextarea name='transactionDescription' placeholder='Transaction Description' className='trans_desc' />
                         </div>
                         <div className='my-form-group btn-container'>
-                            <MyButton className='trans_submit' type='submit' name="Add">Submit</MyButton>
+                            <MyButton className='trans_submit' type='submit' name={fetchedTransaction ? "Update" : "Add"}>Submit</MyButton>
                         </div>
                     </Form>
                 </Formik>

@@ -97,6 +97,20 @@
       "transactionAmount": "123",
       "transactionType": "expense",
       "id": 30
+    },
+    {
+      "transactionTitle": "testds",
+      "transactionDescription": "",
+      "transactionAmount": "123",
+      "transactionType": "income",
+      "id": 31
+    },
+    {
+      "transactionTitle": "testinni",
+      "transactionDescription": "12342222222",
+      "transactionAmount": 0,
+      "transactionType": "income",
+      "id": 32
     }
   ]
 }

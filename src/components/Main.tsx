@@ -157,7 +157,7 @@ const Main = () => {
                         <Route exact path='/' component={TransactionListContainer} />
                         <Route path='/add-transaction' component={AddTransactionForm} />
                         <Route exact path='/transactions' component={TransactionListContainer} />
-                        <Route path='/transactions/:transactionId' component={AddTransactionForm}/>
+                        <Route path='/transactions/:id' component={AddTransactionForm}/>
                     </Switch>
                 </main>
             </BrowserRouter>

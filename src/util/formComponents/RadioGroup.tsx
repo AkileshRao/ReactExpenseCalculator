@@ -5,7 +5,7 @@ import { useField } from "formik";
 
 const MyRadioGroup = ({ children, ...props }: any) => {
   const [field, meta] = useField({ ...props, type: 'radio' });
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState(props.currenttype);
 
   const handleChange = (e: any) => {
     setSelectedValue(e.target.value);
@@ -13,14 +13,14 @@ const MyRadioGroup = ({ children, ...props }: any) => {
 
   // useEffect(() => {
   //   console.log(selectedValue);
-    
+
   // }, [selectedValue])
   return (
     <div>
       <RadioGroup {...field} {...props}>
         {
           props.options.map((option: any, index: number) => (
-            <FormControlLabel key={index} control={<Radio checked={selectedValue === option.value} value={option.value}  onChange={handleChange}/>} label={option.label} />
+            <FormControlLabel key={index} control={<Radio checked={selectedValue === option.value} value={option.value} onChange={handleChange} />} label={option.label} />
           ))
         }
       </RadioGroup>
